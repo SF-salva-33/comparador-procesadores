@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Procesadores</title>
+    <style>
+        .resultado {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .mejor {
+            background-color: #dff0d8;
+        }
+        .peor {
+            background-color: #f2dede;
+        }
+    </style>
+     {% load static %}
+     <script src="{% static 'js/calificaciones.js' %}"></script> 
+</head>
+<body>
+    <h1>Comparación de Procesadores</h1>
+    
+    <div class="resultado mejor">
+        <h2>Ganador: {{ mejor_procesador.nombre }}</h2>
+        <p>Puntaje: 
+            {% if mejor_procesador == procesador1 %}
+                {{ puntaje1 }}
+            {% else %}
+                {{ puntaje2 }}
+            {% endif %}
+        <!--Aca deben ir las estrellas - centradas obvio-->
+        
+        <div class="calificacion">
+            <h3>Calificación:</h3>
+
+        </div>
+        
+        </p>
+    </div>
+    
+    <div class="resultado peor">
+        <h2>Perdedor: {% if mejor_procesador == procesador2 %} {{ procesador1.nombre }} {% else %} {{ procesador2.nombre }} {% endif %}</h2>
+        <p>Puntaje: 
+            {% if mejor_procesador == procesador1 %}
+                {{ puntaje2 }}
+            {% else %}
+                {{ puntaje1 }}
+            {% endif %}
+             <!--Aca TAMBIEN deben ir las estrellas - centradas obvio-->
+             <div class="calificacion">
+                <h3>Calificación:</h3>
+                
+            </div>
+            
+        </p>
+    </div>
+    
+
+    <h3>Detalles de los Procesadores</h3>
+    <div>
+        <h4>{{ procesador1.nombre }}</h4>
+        <p>Frecuencia Base: {{ procesador1.frecuencia_base }} GHz</p>
+        <p>Núcleos: {{ procesador1.numero_nucleos }}</p>
+        <p>Hilos: {{ procesador1.numero_hilos }}</p>
+        <p>Caché L3: {{ procesador1.cache_L3 }} MB</p>
+        <p>TDP: {{ procesador1.tdp }} W</p>
+    </div>
+
+    <div>
+        <h4>{{ procesador2.nombre }}</h4>
+        <p>Frecuencia Base: {{ procesador2.frecuencia_base }} GHz</p>
+        <p>Núcleos: {{ procesador2.numero_nucleos }}</p>
+        <p>Hilos: {{ procesador2.numero_hilos }}</p>
+        <p>Caché L3: {{ procesador2.cache_L3 }} MB</p>
+        <p>TDP: {{ procesador2.tdp }} W</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Procesadores</title>
+</head>
+<body>
+    <h1>Selecciona dos procesadores para comparar</h1>
+    
+    <!-- Enlace al inicio de sesión -->
+    <a href="{% url 'login' %}">Iniciar Sesión</a>
+    
+    <form action="{% url 'comparar' %}" method="get">
+        <label for="procesador1">Seleccionar primer procesador:</label>
+        <select name="procesador1" id="procesador1">
+            {% for procesador in procesadores %}
+                <option value="{{ procesador.id }}">{{ procesador.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="procesador2">Seleccionar segundo procesador:</label>
+        <select name="procesador2" id="procesador2">
+            {% for procesador in procesadores %}
+                <option value="{{ procesador.id }}">{{ procesador.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Comparar</button>
+    </form>
+</body>
+</html>
